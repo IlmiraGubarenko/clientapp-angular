@@ -24,13 +24,13 @@ export class ClientsComponent implements OnInit {
     this.clientService.getClients().subscribe(clients => {
       this.clients = clients;
       this.totalOwned = this.getTotalOwned();
-    })
+    });
   }
 
   getTotalOwned() {
     return this.clients.reduce((total, client) => {
       return total += client.balance;
-    }, 0)
+    }, 0);
   }
 
 }

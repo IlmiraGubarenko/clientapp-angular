@@ -22,7 +22,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { ClientService } from "./services/client.service";
+import { ClientService } from './services/client.service';
 
 
 @NgModule({

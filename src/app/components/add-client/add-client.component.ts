@@ -24,7 +24,7 @@ export class AddClientComponent implements OnInit {
     balance: 0
   };
 
-  disabledBalanceOnAdd: boolean = true;
+  disabledBalanceOnAdd = true;
 
   // дает возможность использовать локальную переменную clientForm из разметки в компоненте
   @ViewChild('clientForm') form: any;
