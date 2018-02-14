@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { Router } from '@angular/router';
 
 // Service
 import { ClientService } from '../../services/client.service';
@@ -17,6 +16,9 @@ import { Client } from '../../models/Client';
 export class ClientDetailsComponent implements OnInit {
 
   client: Client;
+  id: string;
+  hasBalance = false;
+  showBalanceUpdateInput = false;
 
   currentRouteId: string;
 
@@ -30,22 +32,38 @@ export class ClientDetailsComponent implements OnInit {
   ngOnInit() {
     this.currentRouteId = this.route.snapshot.params.id;
     this.clientService.getClient(this.currentRouteId).subscribe( client => {
-      this.client = client;
-    }, error => {
-      console.log(error);
+      if (client) {
+        if (client.balance > 0) {
+          this.hasBalance = true;
+        }
+        this.client = client;
+      }
     });
   }
 
-  removeClient(client: Client) {
-    // Delete client
-    this.clientService.deleteClient(client);
-    // Show message success
-    this.flashMessage.show('Client delete success', {
+  updateBalance() {
+    this.clientService.updateClient(this.client);
+    this.flashMessage.show('Balance updated', {
       timeout: 4000,
       cssClass: 'alert-success'
     });
-    // Redirect
-    this.router.navigate(['/']);
+    this.showBalanceUpdateInput = false;
+  }
+
+  removeClient(client: Client) {
+
+    if (confirm('Are you sure?')) {
+      // Delete client
+      this.clientService.deleteClient(client);
+      // Show message success
+      this.flashMessage.show('Client removed', {
+        timeout: 4000,
+        cssClass: 'alert-success'
+      });
+      // Redirect
+      this.router.navigate(['/']);
+    }
+
   }
 
 }

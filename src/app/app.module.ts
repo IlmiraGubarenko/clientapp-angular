@@ -23,6 +23,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { ClientService } from './services/client.service';
+import { AuthService } from './services/auth.service';
+import { SettingsService } from './services/settings.service';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { ClientService } from './services/client.service';
     FlashMessagesModule.forRoot()
   ],
   providers: [
-    ClientService
+    ClientService,
+    AuthService,
+    SettingsService
   ],
   bootstrap: [AppComponent]
 })
