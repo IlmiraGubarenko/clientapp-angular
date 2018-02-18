@@ -3,6 +3,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 
 // Services
 import { ClientService } from '../../services/client.service';
+import { SettingsService } from '../../services/settings.service';
 
 // Models
 import { Client } from '../../models/Client';
@@ -24,19 +25,20 @@ export class AddClientComponent implements OnInit {
     balance: 0
   };
 
-  disabledBalanceOnAdd = true;
+  disabledBalanceOnAdd: boolean;
 
   // дает возможность использовать локальную переменную clientForm из разметки в компоненте
   @ViewChild('clientForm') form: any;
 
   constructor(
     public clientService: ClientService,
+    public settingsService: SettingsService,
     public flashMessage: FlashMessagesService,
     public router: Router
   ) { }
 
   ngOnInit() {
-
+    this.disabledBalanceOnAdd = this.settingsService.getSettings().disableBalanceOnAdd;
   }
 
   onSubmit() {

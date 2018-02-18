@@ -38,9 +38,14 @@
         <div class="clearfix">
           <form *ngIf="showBalanceUpdateInput" (ngSubmit)="updateBalance()">
             <div class="input-group">
-              <input type="text" name="balance" class="form-control" [(ngModel)]="client.balance">
+              <input type="text"
+                     name="balance"
+                     class="form-control"
+                     [(ngModel)]="client.balance"
+                     [disabled]="disabledBalanceOnEdit"
+              >
               <span class="input-group-btn">
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary" [disabled]="disabledBalanceOnEdit">Update</button>
               </span>
             </div>
           </form>

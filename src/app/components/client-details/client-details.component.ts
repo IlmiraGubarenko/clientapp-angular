@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
-// Service
+// Services
 import { ClientService } from '../../services/client.service';
+import { SettingsService } from '../../services/settings.service';
 
 // Model
 import { Client } from '../../models/Client';
@@ -19,11 +20,13 @@ export class ClientDetailsComponent implements OnInit {
   id: string;
   hasBalance = false;
   showBalanceUpdateInput = false;
-
+  disabledBalanceOnEdit: boolean;
   currentRouteId: string;
+
 
   constructor(
     public clientService: ClientService,
+    public settingsService: SettingsService,
     public route: ActivatedRoute,
     public router: Router,
     public flashMessage: FlashMessagesService
@@ -39,6 +42,7 @@ export class ClientDetailsComponent implements OnInit {
         this.client = client;
       }
     });
+    this.disabledBalanceOnEdit = this.settingsService.getSettings().disableBalanceOnEdit;
   }
 
   updateBalance() {
