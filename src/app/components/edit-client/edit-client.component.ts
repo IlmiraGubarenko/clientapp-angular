@@ -7,6 +7,7 @@ import { ClientService } from '../../services/client.service';
 
 // Models
 import { Client } from '../../models/Client';
+import { Settings } from '../../models/Settings';
 
 @Component({
   selector: 'app-edit-client',
@@ -25,6 +26,7 @@ export class EditClientComponent implements OnInit {
     balance: 0
   };
   currentRouteId: string;
+  settings: Settings;
 
   constructor(
     public clientService: ClientService,

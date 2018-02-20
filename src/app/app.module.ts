@@ -26,6 +26,8 @@ import { ClientService } from './services/client.service';
 import { AuthService } from './services/auth.service';
 import { SettingsService } from './services/settings.service';
 
+import { MyPipePipe } from './pipes/my-pipe.pipe';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { SettingsService } from './services/settings.service';
     NotFoundComponent,
     RegisterComponent,
     SettingsComponent,
-    SidebarComponent
+    SidebarComponent,
+    MyPipePipe
   ],
   imports: [
     BrowserModule,
